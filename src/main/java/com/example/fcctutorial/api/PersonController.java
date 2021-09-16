@@ -3,10 +3,9 @@ package com.example.fcctutorial.api;
 import com.example.fcctutorial.model.Person;
 import com.example.fcctutorial.service.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 /*
 * Controllers are the API layer that has interaction with the user, we use
@@ -37,5 +36,15 @@ public class PersonController {
     @PostMapping
     public void addPerson(@RequestBody Person person) {
         personService.addPerson(person);
+    }
+
+    /*
+    * We call a new method defined at the service layer to get all the Persons stored,
+    * notice we use @GetMapping, this way when the request goes to the same endpoint
+    * but with a GET header, this method will be called
+    * */
+    @GetMapping
+    public List<Person> getAllPeople() {
+        return personService.getAllPeople();
     }
 }
