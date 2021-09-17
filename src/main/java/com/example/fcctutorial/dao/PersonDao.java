@@ -7,6 +7,7 @@ package com.example.fcctutorial.dao;
 import com.example.fcctutorial.model.Person;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 public interface PersonDao {
@@ -23,5 +24,20 @@ public interface PersonDao {
         return insertPerson(id, person);
     }
 
+    /*
+    * This method will return all the stored data, we define its logic at
+    * dao/FakePersonDataAccessService.java
+    * */
     List<Person> selectAllPeople();
+
+    /*
+    * Methods to Update, Delete and Select a Person by ID
+    * */
+
+    int deletePersonById(UUID id);
+
+    int updatePersonByID(UUID id, Person person);
+
+    Optional<Person> selectPersonById(UUID id);
+
 }
